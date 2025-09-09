@@ -1,0 +1,114 @@
+SQL*Plus: Release 21.0.0.0.0 - Production on Tue Sep 9 12:08:04 2025
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter user-name: system;
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name: system
+Enter password:
+Last Successful login time: Tue Sep 09 2025 11:49:57 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> select * from products;
+
+no rows selected
+
+SQL> insert into products values(101,'pen',10);
+
+1 row created.
+
+SQL> insert into products values(102,'notebook',50);
+
+1 row created.
+
+SQL> insert into products values(103,'charger',500);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from products;
+
+       PID PNAME                     PRICE
+---------- -------------------- ----------
+       101 pen                          10
+       102 notebook                     50
+       103 charger                     500
+
+SQL> @C:\Users\Prajakta\Desktop\sqlplus\cursor\implicit.sql
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from products;
+
+       PID PNAME                     PRICE
+---------- -------------------- ----------
+       101 pen                          10
+       102 notebook                     50
+       103 charger                     500
+       104 phone                     20000
+
+
+
+SQL> @C:\Users\Prajakta\Desktop\sqlplus\cursor\explicit.sql
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on
+SQL> @C:\Users\Prajakta\Desktop\sqlplus\cursor\explicit.sql
+ID: 101, Name: pen, Price: 10
+ID: 102, Name: notebook, Price: 50
+ID: 103, Name: charger, Price: 500
+ID: 104, Name: phone, Price: 20000
+
+PL/SQL procedure successfully completed.
+
+SQL> insert into products values(105,'book',450);
+
+1 row created.
+
+SQL> @C:\Users\Prajakta\Desktop\sqlplus\cursor\parameterized.sql
+ID: 104, Name: phone, Price: 20000
+
+PL/SQL procedure successfully completed.
+
+SQL> @C:\Users\Prajakta\Desktop\sqlplus\cursor\update.sql
+Prices updated.
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from products;
+
+       PID PNAME                     PRICE
+---------- -------------------- ----------
+       101 pen                          10
+       102 notebook                     50
+       103 charger                     500
+       104 phone                     20000
+       105 book                        450
+
+SQL> update products set price = 600.00 where pid = 105;
+
+1 row updated.
+
+SQL> select * from products;
+
+       PID PNAME                     PRICE
+---------- -------------------- ----------
+       101 pen                          10
+       102 notebook                     50
+       103 charger                     500
+       104 phone                     20000
+       105 book                        600
+
+SQL>
